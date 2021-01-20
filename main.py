@@ -35,7 +35,7 @@ def get_food_list(ingredients, number_fetched_food):
     fetched_foods = requests.get(url=spoonacular_api, params=parameters).json()
 
     for fetched_food in fetched_foods:
-        if fetched_food.get('likes') > 0:
+        if fetched_food.get('likes') > 1:
             list_of_food.append(fetched_food)
 
         if len(list_of_food) == number_fetched_food:
@@ -113,6 +113,8 @@ def webhook():
         list_of_food = []
         global fulfillment_text, recommended_food_ingredients
         ingredients = req.get('queryResult').get('parameters').get('ingredients')
+        print('ingredients are:')
+        print(ingredients)
         num_of_food = req.get('queryResult').get('parameters').get('number')
         num_of_food = 3 if num_of_food == '' else int(num_of_food)
         get_food_list(ingredients, num_of_food)
@@ -154,7 +156,16 @@ def webhook():
             option_number = req.get('queryResult').get('parameters').get('number')
         food_index = option_number if option_number != -1 else option_ordinal
         get_food_info(food_index)
-        selected_food_steps = recipe_of_food[0][0].get('steps')
+        try:
+            selected_food_steps = recipe_of_food[0][0].get('steps')
+        except IndexError:
+            return {
+                "fulfillmentMessages": [{
+                    "text": {
+                        "text": ["The cooking instruction for this food is not supported!"]
+                    }
+                }]
+            }
         for obj in selected_food_steps:
             list_of_steps.append(obj.get('step'))
         list_of_steps = [step for step in selected_food_steps]
