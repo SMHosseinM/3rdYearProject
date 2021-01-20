@@ -1,7 +1,5 @@
 # from main import app, get_food_list
-from unittest import mock
 import main
-import pytest
 import json
 
 
@@ -41,22 +39,35 @@ def test_webhook_content_type_is_json():
     assert response.content_type == 'application/json'
 
 
-def test_webhook_default_response():
-    response = payload('food.ingredients')
-    response_data = json.loads(response.data)
-    answer = 'I found 3 options for you. Option 1 : Celery Cheese Boats. You have to buy 1 more ingredient, ' \
-             'which is: carrot. Option 2 : Ants on a Log. You have to buy 1 more ingredient, which is: raisins.' \
-             ' Option 3 : Scrumptious Stuffed Celery. You have to buy 1 more ingredient, which is: fig spread.'
-    assert response_data["fulfillmentMessages"][0]["text"]["text"][0] == answer
+def test_list_food_contains_object_with_3_keys():
+    payload('food.ingredients')
+    first_object = main.list_of_food[0]
+    assert len(first_object) == 3
+
+
+def test_list_food_contains_object_with_id_as_number():
+    payload('food.ingredients')
+    first_object = main.list_of_food[0]
+    food_id = first_object.get('id')
+    assert type(food_id) is int
+
+
+# def test_webhook_default_response():
+#     response = payload('food.ingredients')
+#     response_data = json.loads(response.data)
+#     answer = 'I found 3 options for you. Option 1 : Celery Cheese Boats. You have to buy 1 more ingredient, ' \
+#              'which is: carrot. Option 2 : Ants on a Log. You have to buy 1 more ingredient, which is: raisins.' \
+#              ' Option 3 : Scrumptious Stuffed Celery. You have to buy 1 more ingredient, which is: fig spread.'
+#     assert response_data["fulfillmentMessages"][0]["text"]["text"][0] == answer
     
     
-def test_webhook_2foods_response():
-    response = payload('food.ingredients', 2)
-    response_data = json.loads(response.data)
-    answer = 'I found 2 options for you. Option 1 : Ants on a Log. You have to buy 1 more ingredient, ' \
-             'which is: raisins. Option 2 : Scrumptious Stuffed Celery. You have to buy 1 more ingredient,' \
-             ' which is: fig spread.'
-    assert response_data["fulfillmentMessages"][0]["text"]["text"][0] == answer
+# def test_webhook_2foods_response():
+#     response = payload('food.ingredients', 2)
+#     response_data = json.loads(response.data)
+#     answer = 'I found 2 options for you. Option 1 : Ants on a Log. You have to buy 1 more ingredient, ' \
+#              'which is: raisins. Option 2 : Scrumptious Stuffed Celery. You have to buy 1 more ingredient,' \
+#              ' which is: fig spread.'
+#     assert response_data["fulfillmentMessages"][0]["text"]["text"][0] == answer
 
 
 def test_get_food_list_returns_200():
@@ -78,5 +89,24 @@ def test_webhook_repeat_food():
     response_data = json.loads(response.data)
     answer = ' Option 2 : Ants on a Log. You have to buy 1 more ingredient, which is: raisins.'
     assert response_data["fulfillmentMessages"][0]["text"]["text"][0] == answer
+
+
+def test_say_recipe_steps_exceed_upper_limit():
+    instructions = ['Turn on oven', 'leave egg in the oven for 20 minutes']
+    instruction = main.say_recipe_steps(instructions, 3)
+    assert instruction == 'leave egg in the oven for 20 minutes'
+
+
+def test_say_recipe_steps_exceed_lower_limit():
+    instructions = ['Turn on oven', 'leave egg in the oven for 20 minutes']
+    instruction = main.say_recipe_steps(instructions, 0)
+    assert instruction == 'Turn on oven'
+
+
+def test_intent_food_option():
+    response = payload('food.option', 2)
+    response_data = json.loads(response.data)
+    assert type(response_data["fulfillmentMessages"][0]["text"]["text"][0]) == str
+
 
 
