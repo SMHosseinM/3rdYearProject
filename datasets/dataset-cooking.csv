@@ -1,0 +1,97 @@
+text,class
+what can I make with bacon?,recipe-navigation
+give me the recipe for the first option.,recipe-navigation
+6 food I can make with bacon,recipe-navigation
+"give me the list of 10 foods I can make with carrots, cheese, cabbage",recipe-navigation
+"What can I make with cheese, celery, cat fish filets",recipe-navigation
+"what foods can I make with bacon, carrots",recipe-navigation
+I have only cabbage,recipe-navigation
+what foods can I make ,recipe-navigation
+next,recipe-navigation
+previous ,recipe-navigation
+What food can I make with fish carrots and potatoes,recipe-navigation
+How to cook a meal with fish carrots and potatoes,recipe-navigation
+Show me how to cook a healthy meal,recipe-navigation
+How to prepare a simple vegetarian meal,recipe-navigation
+go back,recipe-navigation
+"Hi Agent, what food can I make today?",recipe-navigation
+"Hi Agent, what food can I make using fish, carrots and potatoes?",recipe-navigation
+"Hi Agent, any suggestions for today's meal?",recipe-navigation
+can you please repeat the instruction,recipe-navigation
+Suggest me some dinner ideas,recipe-navigation
+"fish carrots potatoes , what can i make/cook with these.",recipe-navigation
+"What dish can I make with fish, carrots and potatoes?",recipe-navigation
+"I’m hungry but I only have fish, carrots and potatoes",recipe-navigation
+"I got fish, carrots and potatoes. What are the best three dishes that I can prepare with them?",recipe-navigation
+what did I have to do with the butter?,recipe-content
+Where should I place the bacon,recipe-content
+How long should I place that in the oven,recipe-content
+How much mozzarella should I add,recipe-content
+what should I use to brush top of crescent,recipe-content
+How many stick should I insert to each hot dog,recipe-content
+How many cups do I need,recipe-content
+what should be the size of the soup pot,recipe-content
+what ingredients do I need to add,recipe-content
+for how long should I continue stirring,recipe-content
+when should I puree the soup,recipe-content
+what was the alternative approach,recipe-content
+how many pieces of bacon do I need to cook,recipe-content
+what container do I need to use,recipe-content
+what type of parmesan cheese should I add,recipe-content
+what should I add first?,recipe-content
+what should I add second?,recipe-content
+what do I need to add?,recipe-content
+what do I need to combine?,recipe-content
+for how long should I stir,recipe-content
+How much mozzarella should I need,recipe-content
+How many forks do I need to use,recipe-content
+how should I remove the fat,recipe-content
+when should i crumble the bacon up into small bits?,recipe-content
+question,none
+query,none
+hello ,none
+I am hungry,none
+I want food,none
+I need to eat,none
+How does this application work,none
+I want something delicious ,none
+food,none
+give me something,none
+hi,none
+who is the programmer of this bot,none
+good morning,none
+good afternoon,none
+good evening,none
+Can you give me soemthing to eat,none
+How can you fill up my empty stomach,none
+"foodi, how is it going?",none
+give me vegetarian food,none
+do you have vigen food,none
+What do you have for breakfast,none
+what do have for luch,none
+what do you have for dinner,none
+give me 2 popular food,none
+How to make Fish and Chipse step by step,food-name
+give me the recipe for Buffalo-Style Celery Sticks,food-name
+Give me the instruction for Oreo Cheesecake Pops,food-name
+How to make Twin Cities Dogs,food-name
+how to cook Bacon Egg McMuffin Cups,food-name
+recipe for Bacon and Egg Cups,food-name
+Find the recipe for Stovetop Clambake,food-name
+Give me step by step instructions to make Potato-Wrapped Halibut.,food-name
+Let’s cook Gluten-free Fish And Chips,food-name
+I choose  Balsamic Roast Beef French Dip Sandwich,food-name
+I choose  Easy Meat Lover’s Pizza to cook,food-name
+Can you guide me through the steps for preparing Bacon Stuffed Chicken ?,food-name
+What do I need to do to cook Trail Mix Bites – My Sequined Life?,food-name
+How do I make Orzo Pilaf with Avocado,food-name
+How do I cook Arabic Rice,food-name
+Can you tell how to make EASY Oven Roasted Veggies in detailed steps?,food-name
+How can I cook Roasted Tofu and Vegetables in steps?,food-name
+explain each step for making Colorful Oven Vegetables to me,food-name
+tell me the details of making Slow Cooker Asian Chicken Lettuce Wraps,food-name
+What are the steps for the Risotto with Bacon and Kale's recipe?,food-name
+What is the step-by-step instruction for preparing London Particular?,food-name
+Can you tell me how to make Italian Potato Salad,food-name
+tell me how can i make BBQ Ranch Chicken Salad Sandwiches,food-name
+instruct me on making fish and chips,food-name
