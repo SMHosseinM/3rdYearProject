@@ -134,7 +134,8 @@ def webhook():
     # check if the intent is recipe content or not
     if is_current_recipe_navigation and intent_name != 'recipe.next' and intent_name != 'recipe.previous' \
             and intent_name != 'food.option' and intent_name != 'food.ingredients.repeatOption' \
-            and intent_name != 'food.ingredients.repeatOptions' and intent_name != 'food1.ingredients.fallback':
+            and intent_name != 'food.ingredients.repeatOptions' and intent_name != 'food1.ingredients.fallback' \
+            and intent_name != 'repeat.recommended.food.list':
         query_text = req.get('queryResult').get('queryText')
         if query_text != 'select-food-by-name-event' and query_text != 'recipe-content-event':
             print('query text is:', query_text)

@@ -6,7 +6,7 @@ In this file, I will explain how you should execute this application step by ste
 3) Install python virtual environment by running "python3 -m venv virtual-env".
 4) Activate the virtual environment by running "source virtual-env/bin/activate".
 5) Copy all the files form the "python-code" directory to the "cooking-assistant" directory.
-6) install the required packages by running "pip install -r requirements.txt"
+6) install the required packages by running "pip3 install -r requirements.txt"
 6) Execute the python code by running "python3 main.py". After execution, you should get a message like
    "Running on http://127.0.0.1:8080/".
 7) Open a new terminal and run "./ngrok http 8080" (8080 is the port number your got by running main.py).
