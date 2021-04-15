@@ -23,3 +23,4 @@ In this file, I will explain how you should execute this application step by ste
 18) Click on "integration".
 19) Click on "Test".
 20) You will be redirected to the Google Assistant simulation environment and you can test the code their.
+21) If you get an error message on Google Assistant simulator saying the app is not responding right now, go to the Develop tab -> Invocation and type "my app" for Display name. Save it and try again
