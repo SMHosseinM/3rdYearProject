@@ -134,7 +134,7 @@ def webhook():
     # check if the intent is recipe content or not
     if is_current_recipe_navigation and intent_name != 'recipe.next' and intent_name != 'recipe.previous' \
             and intent_name != 'food.option' and intent_name != 'food.ingredients.repeatOption' \
-            and intent_name != 'food.ingredients.repeatOptions':
+            and intent_name != 'food.ingredients.repeatOptions' and intent_name != 'food1.ingredients.fallback':
         query_text = req.get('queryResult').get('queryText')
         if query_text != 'select-food-by-name-event' and query_text != 'recipe-content-event':
             print('query text is:', query_text)
@@ -459,7 +459,7 @@ def webhook():
                 }
             }
         }
-    elif intent_name == 'recipe.fallback':
+    elif intent_name == 'recipe.fallback' or intent_name == 'recipe1.fallback':
         message = '''Sorry! I didn't understand what you mean.
         To listen to the same instruction again, please say something like "repeat".
         To navigate to the next instruction, please say something like "next".
@@ -503,7 +503,7 @@ def webhook():
         question_answerer = transformerCode.get_pipeline()
         answer = question_answerer(question=question, context=context)
         score = answer.get('score')
-        if score < 0.2:
+        if score < 0.19:
             message = "Sorry! I couldn't find the answer to your question."
         else:
             message = answer.get('answer')
@@ -571,7 +571,7 @@ def webhook():
     #            "languageCode": "en-US"
     #        }
     #    }
-    elif intent_name == 'food.ingredients.fallback':
+    elif intent_name == 'food.ingredients.fallback' or intent_name == 'food1.ingredients.fallback':
         list_of_food_name = []
         list_of_food_dict = []
         for food in list_of_food:
