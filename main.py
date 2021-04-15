@@ -98,9 +98,9 @@ def say_recipe_steps(instructions, step_number):
     if step_number > len(instructions):
         step_index = len(instructions)+1
         recipe_instruction_step = step_index
-        return '''You have reached to the end of the instruction. You have three options here:
-        You can navigate to the previous instruction by saying "previous" 
-        or you can end the conversation by saying "I'm done"
+        return '''You have reached the end of the instructions. You have three options to choose from:
+        You can navigate to the previous instruction by saying "previous",
+        you can end the conversation by saying "I'm done", 
         or you can start a new conversation by listing your ingredients!'''
     elif step_number < 1:
         step_index = 0
@@ -120,7 +120,7 @@ def get_recipe_equipments(recipe_id):
 
 @app.route('/')
 def index():
-    return "This is Hossein Miraftabi's 3rd year project under the supervision of Riza"
+    return "This is Hossein Miraftabi's 3rd year project under the supervision of Riza Batista"
 
 
 @app.route('/webhook', methods=['POST'])
@@ -170,8 +170,8 @@ def webhook():
                         }
                     }
                 else:
-                    message = '''The name of the food is not recognised!
-                                 To see the list of recommended food, please say 'show me the list of recommended food'''''
+                    message = '''I'm sorry but the name of the food option is not recognised!
+                    To see the list of recommended food options, please say 'show me the list of recommended food options'''''
                     return {
                         "fulfillmentMessages": [{
                             "text": {
@@ -232,7 +232,7 @@ def webhook():
         get_food_list(ingredients, num_of_food)
         fulfillment_text = 'I found {0} options for you.{1}'.format(num_of_food,
                                                                     food_option_message(list_of_food))
-        fulfillment_text += 'Please select your favourite food by calling its name or its option number.'
+        fulfillment_text += 'Please select your favourite food option by calling its name or its option number.'
         recommended_food_options = fulfillment_text
 
         return {
@@ -349,8 +349,8 @@ def webhook():
         try:
             selected_food_steps = recipe_of_food[0][0].get('steps')
         except IndexError:
-            message = '''The cooking instruction for this food is not supported! 
-                         To see the list of recommended food, please say "show me the list of recommended food"'''
+            message = '''I'm affraid that the cooking instructions for this food option are not available! 
+            To see the list of recommended food options, please say "show me the list of recommended food options"'''
             return {
                 "fulfillmentMessages": [{
                     "text": {
@@ -378,10 +378,11 @@ def webhook():
         list_of_steps = [step for step in selected_food_steps]
         print('The step number is: ', recipe_instruction_step)
         instruction = ''' {}
-        Throughout the instructions, you can use the following commands:
-        To see the same instruction again, please say something like "repeat"
-        To navigate to the next instruction, please say something like "next"
-        To navigate to the previous instruction, please say something like "previous"'''.format(say_recipe_steps(list_of_steps, recipe_instruction_step))
+        After any of the instructions, you can choose from a number of commands.
+        To listen to the same instruction again, please say something like "repeat".
+        To navigate to the next instruction, please say something like "next".
+        To go back to the previous instruction, please say something like "previous".'''\
+            .format(say_recipe_steps(list_of_steps, recipe_instruction_step))
         current_instruction = instruction
         return {
             "fulfillmentMessages": [{
@@ -459,10 +460,10 @@ def webhook():
             }
         }
     elif intent_name == 'recipe.fallback':
-        message = '''Sorry! I didn't get what you mean.
-        To see the same instruction again, please say something like "repeat"
-        To navigate to the next instruction, please say something like "next"
-        To navigate to the previous instruction, please say something like "previous"'''
+        message = '''Sorry! I didn't understand what you mean.
+        To listen to the same instruction again, please say something like "repeat".
+        To navigate to the next instruction, please say something like "next".
+        To go back to the previous instruction, please say something like "previous"'''
         return {
             "fulfillmentMessages": [{
                 "text": {
@@ -503,7 +504,7 @@ def webhook():
         answer = question_answerer(question=question, context=context)
         score = answer.get('score')
         if score < 0.2:
-            message = "Sorry! I couldn't find the answer for your question."
+            message = "Sorry! I couldn't find the answer to your question."
         else:
             message = answer.get('answer')
         final_answer = '{}'.format(message)
@@ -531,10 +532,7 @@ def webhook():
         }
     elif intent_name == 'food.option.recipe.repeat':
         instruction = say_recipe_steps(list_of_steps, recipe_instruction_step)
-        message = '''{}
-        To see the same instruction again, please say something like "repeat"
-        To navigate to the next instruction, please say something like "next"
-        To navigate to the previous instruction, please say something like "previous"'''.format(instruction)
+        message = '{}'.format(instruction)
         return {
             "fulfillmentMessages": [{
                 "text": {
@@ -604,7 +602,7 @@ def webhook():
                         }
                     }
         if len(list_of_food_titles) == 0:
-            message = 'This application does not support these ingredients! Please choose different ingredients'
+            message = "I'm afraid I don't recognise these ingredients! Please name other ingredients."
         else:
             message = "name of the food is not recognize. To see the list of recommended food, " \
                       "please say 'show me the list of recommended food"
